@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=OCCompiler
 ConfigurationName      :=Debug
-WorkspacePath          :=/home/gusenkovs/FSMCoreFile
-ProjectPath            :=/home/gusenkovs/FSMCoreFile/OCCompiler
+WorkspacePath          :=C:/Users/Artaw/OneDrive/Документы/compile
+ProjectPath            :=C:/Users/Artaw/Desktop/lagoritm/work/compil/OCCompiler
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=gusenkovs
-Date                   :=30/06/16
-CodeLitePath           :=/home/gusenkovs/.codelite
-LinkerName             :=/usr/bin/g++
-SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
+User                   :=Artaw
+Date                   :=30/06/2016
+CodeLitePath           :="C:/Program Files/CodeLite"
+LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
+SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -34,7 +34,9 @@ ArchiveOutputSwitch    :=
 PreprocessOnlySwitch   :=-E
 ObjectsFileList        :="OCCompiler.txt"
 PCHCompileFlags        :=
-MakeDirCommand         :=mkdir -p
+MakeDirCommand         :=makedir
+RcCmpOptions           := 
+RcCompilerName         :=C:/TDM-GCC-64/bin/windres.exe
 LinkOptions            :=  
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
@@ -47,20 +49,20 @@ LibPath                := $(LibraryPathSwitch).
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := /usr/bin/ar rcu
-CXX      := /usr/bin/g++
-CC       := /usr/bin/gcc
+AR       := C:/TDM-GCC-64/bin/ar.exe rcu
+CXX      := C:/TDM-GCC-64/bin/g++.exe
+CC       := C:/TDM-GCC-64/bin/gcc.exe
 CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := /usr/bin/as
+AS       := C:/TDM-GCC-64/bin/as.exe
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix) 
+CodeLiteDir:=C:\Program Files\CodeLite
+Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_clk.c$(ObjectSuffix) 
 
 
 
@@ -79,11 +81,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@test -d ./Debug || $(MakeDirCommand) ./Debug
+	@$(MakeDirCommand) "./Debug"
 
 
 $(IntermediateDirectory)/.d:
-	@test -d ./Debug || $(MakeDirCommand) ./Debug
+	@$(MakeDirCommand) "./Debug"
 
 PreBuild:
 
@@ -92,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.c$(ObjectSuffix): main.c $(IntermediateDirectory)/main.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/gusenkovs/FSMCoreFile/OCCompiler/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "C:/Users/Artaw/Desktop/lagoritm/work/compil/OCCompiler/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.c$(DependSuffix): main.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.c$(ObjectSuffix) -MF$(IntermediateDirectory)/main.c$(DependSuffix) -MM "main.c"
 
@@ -100,12 +102,20 @@ $(IntermediateDirectory)/main.c$(PreprocessSuffix): main.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.c$(PreprocessSuffix) "main.c"
 
 $(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix): gstruct_gpio.c $(IntermediateDirectory)/gstruct_gpio.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/gusenkovs/FSMCoreFile/OCCompiler/gstruct_gpio.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "C:/Users/Artaw/Desktop/lagoritm/work/compil/OCCompiler/gstruct_gpio.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/gstruct_gpio.c$(DependSuffix): gstruct_gpio.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix) -MF$(IntermediateDirectory)/gstruct_gpio.c$(DependSuffix) -MM "gstruct_gpio.c"
 
 $(IntermediateDirectory)/gstruct_gpio.c$(PreprocessSuffix): gstruct_gpio.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/gstruct_gpio.c$(PreprocessSuffix) "gstruct_gpio.c"
+
+$(IntermediateDirectory)/gstruct_clk.c$(ObjectSuffix): gstruct_clk.c $(IntermediateDirectory)/gstruct_clk.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Users/Artaw/Desktop/lagoritm/work/compil/OCCompiler/gstruct_clk.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gstruct_clk.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/gstruct_clk.c$(DependSuffix): gstruct_clk.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/gstruct_clk.c$(ObjectSuffix) -MF$(IntermediateDirectory)/gstruct_clk.c$(DependSuffix) -MM "gstruct_clk.c"
+
+$(IntermediateDirectory)/gstruct_clk.c$(PreprocessSuffix): gstruct_clk.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/gstruct_clk.c$(PreprocessSuffix) "gstruct_clk.c"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="OCCompiler" InternalType="Console">
   <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
   "name": "Debug",
@@ -13,9 +16,6 @@
   "parentProject": ""
  }]]]>
     </Plugin>
-    <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
-    </Plugin>
   </Plugins>
   <Description/>
   <Dependencies/>
@@ -23,6 +23,8 @@
     <File Name="main.c"/>
     <File Name="gstruct_gpio.c"/>
     <File Name="gstruct.h"/>
+    <File Name="gstruct_clk.c"/>
+    <File Name="struct_clk.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
