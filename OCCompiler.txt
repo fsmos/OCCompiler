@@ -1,1 +1,1 @@
-./Debug/main.c.o ./Debug/gstruct_gpio.c.o ./Debug/gstruct_clk.c.o   
+./Debug/main.c.o ./Debug/gstruct_gpio.c.o ./Debug/gstruct_clk.c.o ./Debug/gstruct_ssp.c.o   

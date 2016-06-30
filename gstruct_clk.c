@@ -105,17 +105,201 @@ void GenerateC_CLK_File(struct OporaDataStruct ors, char* file)
  
  
  //0-1 не знаю
- 
-        if (ors.OPORA_CLOCK.CPU_CLK.CPU_C1_SEL == HSI)
+        
+        switch (ors.OPORA_CLOCK.CPU_CLK.CPU_C1_SEL)
         {
-            fprintf(fl, )
-            CPU_CLOCK |= 0b00;
+            case     HSI:
+                fprintf(fl, "\n выбор истоничка для CPU_C1 HSI");
+                CPU_CLOCK |= 0b00;                
+            break;
+            
+            case HSIDIV2:
+                fprintf(fl, "\n выбор истоничка для CPU_C1 HSI/2");
+                CPU_CLOCK |= 0b01;                 
+            break;
+            
+            case HSE_CPU:
+                fprintf(fl, "\n выбор истоничка для CPU_C1 HSE");
+                CPU_CLOCK |= 0b10;                 
+            break;    
+
+            case HSEDIV2:
+                fprintf(fl, "\n выбор истоничка для CPU_C1 HSE/2");
+                CPU_CLOCK |= 0b11;                 
+            break;   
+     
         }
- 
+        
         if (ors.OPORA_CLOCK.CPU_CLK.CPU_C2_SEL == PLLCPUo)
         {
-            CPU_CLOCK |= 
+             fprintf(fl, "\n для источника выбран PLLZPUo");
+             CPU_CLOCK |= 1 << 2;
         }
+        else fprintf(fl, "\n для источника выбран CPU_C2");
+        
+        switch (ors.OPORA_CLOCK.CPU_CLK.CPU_C3_SEL)
+        {
+            case CPU_C2:
+                fprintf(fl, "делитель для CPU_C3 - 1");
+                CPU_CLOCK |= CPU_C2 << 4;
+            break;
+            
+            case CPU_C2DIV2:
+                fprintf(fl, "делитель для CPU_C3 - 2");
+                CPU_CLOCK |= CPU_C2DIV2 << 4;
+            break;
+
+            case CPU_C2DIV4:
+                fprintf(fl, "делитель для CPU_C3 - 4");
+                CPU_CLOCK |= CPU_C2DIV4 << 4;
+            break;
+            
+            case CPU_C2DIV8:
+                fprintf(fl, "делитель для CPU_C3 - 8");
+                CPU_CLOCK |= CPU_C2DIV8 << 4;
+            break;            
+            
+            case CPU_C2DIV16:
+                fprintf(fl, "делитель для CPU_C3 - 16");
+                CPU_CLOCK |= CPU_C2DIV16 << 4;
+            break; 
+            
+            case CPU_C2DIV32:
+                fprintf(fl, "делитель для CPU_C3 - 32");
+                CPU_CLOCK |= CPU_C2DIV32 << 4;
+            break; 
+            
+            case CPU_C2DIV64:
+                fprintf(fl, "делитель для CPU_C3 - 64");
+                CPU_CLOCK |= CPU_C2DIV64 << 4;
+            break; 
+            
+            case CPU_C2DIV128:
+                fprintf(fl, "делитель для CPU_C3 - 128");
+                CPU_CLOCK |= CPU_C2DIV128 << 4;
+            break; 
+            
+            case CPU_C2DEIV256:
+                fprintf(fl, "делитель для CPU_C3 - 128");
+                CPU_CLOCK |= CPU_C2DEIV256 << 4;
+            break; 
+        }
+        
+        
+        switch (ors.OPORA_CLOCK.CPU_CLK.HCLK_SEL)
+        {
+            case HSI: 
+                fprintf(fl, "\n Источник для HCLK - HSI");
+                CPU_CLOCK |= HSE << 8;
+            break;
+            
+            case CPU_C3: 
+                fprintf(fl, "\n Источник для HCLK - CPU_C3");
+                CPU_CLOCK |= CPU_C3 << 8;
+            break;
+            
+            case LSE: 
+                fprintf(fl, "\n Источник для HCLK - LSE");
+                CPU_CLOCK |= LSE << 8;
+            break;
+            
+            case LSI: 
+                fprintf(fl, "\n Источник для HCLK - LSI");
+                CPU_CLOCK |= LSI << 8;
+            break;
+        }
+        
+        
+        switch (ors.OPORA_CLOCK.USB_CLK.USB_C1_SEL)
+        {
+            case HSI:
+                fprintf(fl, "\n Источник для USB_C1 - HSI");
+                USB_CLOCK = HSI;
+            break;
+            
+            case HSIDIV2:
+                fprintf(fl, "\n Источник для USB_C1 - HSI/2");
+                USB_CLOCK = HSIDIV2;
+            break;
+            
+            case HSE_CPU:
+                fprintf(fl, "\n Источник для USB_C1 - HSE");
+                USB_CLOCK = HSE;
+            break;
+            
+            case HSEDIV2:
+                fprintf(fl, "\n Источник для USB_C1 - HSE/2");
+                USB_CLOCK = HSEDIV2;
+            break;
+        }
+
+        if (ors.OPORA_CLOCK.USB_CLK.USB_C2_SEL == PLLCPUo)
+        {
+             fprintf(fl, "\n источник для USB-C2 - PLLUSBo");
+             USB_CLOCK |= 1 << 2;
+        }
+        else fprintf(fl, "\n источник для USB-C2 - USB_C1");
+        
+   
+        USB_CLOCK |= ors.OPORA_CLOCK.USB_CLK.USB_C3_SEL << 4;
+        
+        if  (ors.OPORA_CLOCK.USB_CLK.USB_CLK_EN == On)
+        {
+             fprintf(fl, "\n тактирование USB разрешено");
+             USB_CLOCK |= 1 << 9;
+        }
+        else fprintf(fl, "\n тактирование USB запрещено");
+        
+        
+        switch (ors.OPORA_CLOCK.ADC_MCO_CLK.ADC_C1_SELL)
+        {
+            case CPU_C1_ADC:
+                fprintf(fl, "\n для ADC_C1 выбран источник CPU_C1");
+                ADC_MCO_CLOCK |= CPU_C1_ADC;
+            break;
+            
+            case USB_C1_ADC:
+                fprintf(fl, "\n для ADC_C1 выбран источник CPU_C1");
+                ADC_MCO_CLOCK |= USB_C1_ADC;
+            break;
+            
+            case CPU_C2_ADC:
+                fprintf(fl, "\n для ADC_C1 выбран источник CPU_C2");
+                ADC_MCO_CLOCK |= CPU_C2_ADC;
+            break;      
+      
+            case USB_C2:
+                fprintf(fl, "\n для ADC_C1 выбран источник USB_C2");
+                ADC_MCO_CLOCK |= USB_C2;
+            break;
+        }
+        
+        switch (ors.OPORA_CLOCK.ADC_MCO_CLK.ADC_C2_SELL)
+        {
+            case LSE_ADC:
+                fprintf(fl, "\n для ADC_C2 выбран источник LSE");
+                ADC_MCO_CLOCK |= LSE << 4;
+            break;
+            
+            case LSI_ADC:
+               fprintf(fl, "\n для ADC_C2 выбран источник LSI");
+               ADC_MCO_CLOCK |= LSI << 4;
+            break;
+            
+            case ADC_C1:
+                fprintf(fl, "\n для ADC_C2 выбран источник ADC_C1");
+                ADC_MCO_CLOCK |= ADC_C1 << 4;
+            break;
+            
+            case HSI_C1:
+                fprintf(fl, "\n для ADC_C2 выбран источник HSI_C1");
+                ADC_MCO_CLOCK |= HSI_C1 << 4;
+            break;
+        }
+        
+
+        fprintf(fl, "\n делитель для ADC_C3 %d", ors.OPORA_CLOCK.ADC_MCO_CLK.ADC_C3_SEll);
+        ADC_MCO_CLOCK |= ors.OPORA_CLOCK.ADC_MCO_CLK.ADC_C3_SEll << 8;
         fprintf(fl,"}");
         fclose(fl);
         

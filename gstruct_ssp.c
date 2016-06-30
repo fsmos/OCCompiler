@@ -46,8 +46,19 @@ void GenerateC_SSP_File(struct OporaDataStruct ors, char* file)
         
                 
         
-        for (i=0; i<4; i++)
+        for (i=0; i<3; i++)
         {
+            SSPx_CR0 = 0;
+            SSPx_CR1 = 0;
+            SSPx_DR = 0;
+            SSPx_SR = 0;
+            SSPx_CPSR = 0;
+            SSPx_IMSC = 0;
+            SSPx_RIS = 0;
+            SSPx_MIS = 0;
+            SSPx_ICR = 0;
+            SSPx_DMACR = 0;  
+            
           fprintf(fl, "/*!\n \\breif SSP%u\n",i);
         switch (ors.PER_SSP[i].SSP_CR0R.DDS)
         {
@@ -155,7 +166,7 @@ void GenerateC_SSP_File(struct OporaDataStruct ors, char* file)
             break;
         }
         
-        if (ors.PER_SSP.SSP_CR0R.SPO == On)
+        if (ors.PER_SSP[i].SSP_CR0R.SPO == On)
         {
             fprintf(fl, "\nПолярность  сигнала  SSPCLK включена");
             SSPx_CR0 |= 1<<6;
@@ -163,7 +174,7 @@ void GenerateC_SSP_File(struct OporaDataStruct ors, char* file)
         else fprintf(fl, "\nПолярность  сигнала  SSPCLK выключена");
 
         
-        if (ors.PER_SSP.SSP_CR0R.SPH == On)
+        if (ors.PER_SSP[i].SSP_CR0R.SPH == On)
         {
             fprintf(fl, "\nФаза  сигнала  SSPCLK включена");
             SSPx_CR0 |= 1<<7;
@@ -171,7 +182,7 @@ void GenerateC_SSP_File(struct OporaDataStruct ors, char* file)
         else fprintf(fl, "\nФаза  сигнала  SSPCLK выключена");
         
         
-        if (ors.PER_SSP.SSP_CPR.LBM == On)
+        if (ors.PER_SSP[i].SSP_CPR.LBM == On)
         {
             fprintf(fl, "\nТестирование по шлейфу: выход  регистра  сдвига  передатчика  соединен  сo входом регистра сдвига приемника");
             SSPx_CR1 |= 1<<0; 
@@ -179,35 +190,35 @@ void GenerateC_SSP_File(struct OporaDataStruct ors, char* file)
         else fprintf(fl, "\nТестирование по шлейфу: нормальный режим работы приемопередатчика");
         
     
-        if (ors.PER_SSP.SSP_CPR.SSE == On)
+        if (ors.PER_SSP[i].SSP_CPR.SSE == On)
         {
             fprintf(fl, "\nРазрешение работы приемопередатчика: работа разрешена");
             SSPx_CR1 |= 1<<1;
         }
         else fprintf(fl, "\nРазрешение работы приемопередатчика: работа запрещена");
         
-        if (ors.PER_SSP.SSP_CPR.MS == On)
+        if (ors.PER_SSP[i].SSP_CPR.MS == On)
         {
             fprintf(fl, "\nВыбор ведущего или ведомого режима работы: ведомый модуль");
             SSPx_CR1 |= 1<<2;
         }
         else fprintf(fl, "\nВыбор ведущего или ведомого режима работы:  ведущий модуль");
         
-        if (ors.PER_SSP.SSP_CPR.SOD == On)
+        if (ors.PER_SSP[i].SSP_CPR.SOD == On)
         {
            fprintf(fl, "\nЗапрет выходных линий в режиме ведомого устройства: управление  линией  SSPTXD  в  ведомом  режиме запрещена");
             SSPx_CR1 |= 1<<3; 
         }
         else fprintf(fl, "\nЗапрет выходных линий в режиме ведомого устройства: управление  линией  SSPTXD  в  ведомом  режиме разрешена");
         
-        if (ors.PER_SSP.SSP_DMACRR.RXDMAE == On)
+        if (ors.PER_SSP[i].SSP_DMACRR.RXDMAE == On)
         {
             fprintf(fl, "\nИспользование DMA при приеме: разрешено  формирование  запросов  DMA  для обслуживания буфера FIFO приемника");
             SSPx_DMACR |= 1<<0;
         }
         else fprintf(fl, "\nИспользование DMA при приеме: запрещено  формирование  запросов  DMA  для обслуживания буфера FIFO приемника");
         
-        if (ors.PER_SSP.SSP_DMACRR.TXDMAE == On)
+        if (ors.PER_SSP[i].SSP_DMACRR.TXDMAE == On)
         {
             fprintf(fl, "\nИспользование DMA при передаче: разрешено  формирование  запросов  DMA  для обслуживания буфера FIFO приемника");
             SSPx_DMACR |= 1<<1;

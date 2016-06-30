@@ -26,6 +26,7 @@
     <File Name="gstruct_clk.c"/>
     <File Name="struct_clk.h"/>
     <File Name="gstruct_ssp.c"/>
+    <File Name="struct_ssp.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

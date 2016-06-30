@@ -44,10 +44,14 @@ int main(int argc, char** argv) {
         DelRash(filen,argv[1]);
         GenerateC_CLK_File(ors, filen);
         DelRash(filen,argv[1]);
+        GenerateC_SSP_File(ors, filen);
+        DelRash(filen,argv[1]);
         
         GenerateHeader_GPIO_File(ors,filen); 
         DelRash(filen,argv[1]);       
         GenerateHeader_CLK_File(ors, filen);
+        DelRash(filen,argv[1]);
+        GenerateHeader_SSP_File(ors, filen);
         
         fclose(fl);
     }
