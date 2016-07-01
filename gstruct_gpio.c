@@ -159,7 +159,7 @@ void GenerateC_Gpio_File(struct OporaDataStruct ors, char* file)
          fprintf(fl,"PORT%c->RXTX=0x%08x;\n", ports[i], REG_RXTX);
          fprintf(fl,"PORT%c->OE=0x%08x;\n", ports[i], REG_OE);
          fprintf(fl, "PORT%c->FUNC=0x%08x;\n", ports[i], REG_FUNC);
-         fprintf(fl, "PORT%c->ANAlOG=0x%08x;\n", ports[i], REG_ANALOG);
+         fprintf(fl, "PORT%c->ANALOG=0x%08x;\n", ports[i], REG_ANALOG);
          fprintf(fl, "PORT%c->PULL=0x%08x;\n", ports[i], REG_PULL);
          fprintf(fl, "PORT%c->PD=0x%08x;\n", ports[i], REG_PD);
          fprintf(fl, "PORT%c->PWR=0x%08x;\n", ports[i], REG_PWR);

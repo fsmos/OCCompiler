@@ -1,4 +1,4 @@
-#ifndef STRUCT_CODE_H
+﻿#ifndef STRUCT_CODE_H
 #define STRUCT_CODE_H
 /**
 *\file
@@ -11,7 +11,7 @@
 
 #include "struct_gpio.h" ///< Артур
 #include "struct_clk.h" ///< Артур
-#include "struct_timer.h" ///< Миша
+//#include "struct_timer.h" ///< Миша
 #include "struct_uart.h" ///< Ира
 #include "struct_ssp.h" ///< Леша
 /**
