@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Artaw
-Date                   :=01/07/2016
+Date                   :=02/07/2016
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_clk.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_ssp.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_gpio.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_clk.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_ssp.c$(ObjectSuffix) $(IntermediateDirectory)/gstruct_pvdcs.c$(ObjectSuffix) 
 
 
 
@@ -124,6 +124,14 @@ $(IntermediateDirectory)/gstruct_ssp.c$(DependSuffix): gstruct_ssp.c
 
 $(IntermediateDirectory)/gstruct_ssp.c$(PreprocessSuffix): gstruct_ssp.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/gstruct_ssp.c$(PreprocessSuffix) "gstruct_ssp.c"
+
+$(IntermediateDirectory)/gstruct_pvdcs.c$(ObjectSuffix): gstruct_pvdcs.c $(IntermediateDirectory)/gstruct_pvdcs.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Users/Artaw/Desktop/lagoritm/work/OCCompiler/gstruct_pvdcs.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/gstruct_pvdcs.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/gstruct_pvdcs.c$(DependSuffix): gstruct_pvdcs.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/gstruct_pvdcs.c$(ObjectSuffix) -MF$(IntermediateDirectory)/gstruct_pvdcs.c$(DependSuffix) -MM "gstruct_pvdcs.c"
+
+$(IntermediateDirectory)/gstruct_pvdcs.c$(PreprocessSuffix): gstruct_pvdcs.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/gstruct_pvdcs.c$(PreprocessSuffix) "gstruct_pvdcs.c"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

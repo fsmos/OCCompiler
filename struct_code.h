@@ -14,6 +14,7 @@
 //#include "struct_timer.h" ///< Миша
 #include "struct_uart.h" ///< Ира
 #include "struct_ssp.h" ///< Леша
+#include "struct_pvdcs.h"///<Женя =)
 /**
 *\brief Настройка опоры
 *Эта структура предназначена для настройки опоры микроконтроллера 1986VE1T
@@ -23,6 +24,7 @@ struct OporaDataStruct
 struct GPIOStruct GPIOPort[6]; ///< настройка портов микроконтроллера
 struct CLK_GLOBAL OPORA_CLOCK;
 //struct TIMER_Global PER_TIMER[4];
+struct PVDCS_GLOBAL PVDCS;
 struct uart_global PER_UART[2];
 struct global_SSP PER_SSP[3];
 };

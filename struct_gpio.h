@@ -11,8 +11,8 @@
 
 enum Switches
 {
-    On,
-    Off
+    On=1,
+    Off=0
 };
 enum Forward
 {
